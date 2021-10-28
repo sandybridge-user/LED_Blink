@@ -3,89 +3,91 @@
 * File name: Blink.c
 * For Arduino Uno
 * 
-* Blink.ino‚ðì¬
-*			«
-* “_–Å‚³‚¹‚éLED‚ÌŒÂ”‚ðŽw’è 
-*			«
-* ƒ}ƒCƒRƒ“‚ÌPIN”Ô†‚ðŽw’è~LED‚ÌŒÂ”•ª
-*			«
-* Blink.ino‚É‘‚«ž‚Þ
+* Blink.inoã‚’ä½œæˆ
+*			â†“
+* ç‚¹æ»…ã•ã›ã‚‹LEDã®å€‹æ•°ã‚’æŒ‡å®š 
+*			â†“
+* ãƒžã‚¤ã‚³ãƒ³ã®PINç•ªå·ã‚’æŒ‡å®šÃ—LEDã®å€‹æ•°åˆ†
+*			â†“
+* Blink.inoã«æ›¸ãè¾¼ã‚€
 *
-* •Ï”ˆê——F
-* led (int)FÚ‘±‚·‚éLED‚ÌŒÂ”‚ð“ü—Í‚³‚¹‚Ä‚¢‚éB
-* i (int)Fi+1‰ñ–Ú(‰Šú’lFi=0)‚É•\Ž¦‚³‚¹‚éLED‚ÌPIN”Ô†‚ðŽ¿–â
-* pin (int): “_“”‚³‚¹‚éLED‚ÌPIN”Ô†‚ðŽ¿–âBƒ‹[ƒv“à‚ÅŽg‚¢‚Ü‚í‚µ‚Ä‚¢‚éB
+* å¤‰æ•°ä¸€è¦§ï¼š
+* led (int)ï¼šæŽ¥ç¶šã™ã‚‹LEDã®å€‹æ•°ã‚’å…¥åŠ›ã•ã›ã¦ã„ã‚‹ã€‚
+* i (int)ï¼ši+1å›žç›®(åˆæœŸå€¤ï¼ši=0)ã«è¡¨ç¤ºã•ã›ã‚‹LEDã®PINç•ªå·ã‚’è³ªå•
+* pin (int): ç‚¹ç¯ã•ã›ã‚‹LEDã®PINç•ªå·ã‚’è³ªå•ã€‚ãƒ«ãƒ¼ãƒ—å†…ã§ä½¿ã„ã¾ã‚ã—ã¦ã„ã‚‹ã€‚
 * 
 */
 
 #include <stdio.h>
+int led = 0;
+int pin = 0;
+int pin_num = 0;
 
 int main(void) {
 
-	//Blink.ino‚ðì¬
+	//Blink.inoã‚’ä½œæˆ
 	FILE* fp;
-	fp = fopen("Blink.ino", "w"); //Blink.ino‚ð‘‚«ž‚Ýƒ‚[ƒhw‚ÅŠJ‚­B
+	fp = fopen("Blink.ino", "a"); //Blink.inoã‚’æ›¸ãè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰wã§é–‹ãã€‚
 	fprintf(fp, "void setup() {\n");
-	fclose(fp);
+	//fclose(fp);
 
 
-	printf("‚±‚ÌƒvƒƒOƒ‰ƒ€‚ÍArduino Uno–”‚Í‚»‚ÌŒÝŠ·ƒ{[ƒh—p‚Å‚·B‘¼‚Ìƒ{[ƒh‚É‚ÍŽg‚¦‚Ü‚¹‚ñB\n");
+	printf("ã“ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã¯Arduino Unoåˆã¯ãã®äº’æ›ãƒœãƒ¼ãƒ‰ç”¨ã§ã™ã€‚ä»–ã®ãƒœãƒ¼ãƒ‰ã«ã¯ä½¿ãˆã¾ã›ã‚“ã€‚\n");
 
-	//LED‚ÌŒÂ”‚ðŽ¿–â
-	printf("“_–Å‚³‚¹‚éLED‚ÌŒÂ”(Ž©‘R”)‚ð“ü—Í‚µ‚ÄAEnterƒL[‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B\n");
-	int led = 0;
+	//LEDã®å€‹æ•°ã‚’è³ªå•
+	printf("ç‚¹æ»…ã•ã›ã‚‹LEDã®å€‹æ•°(è‡ªç„¶æ•°)ã‚’å…¥åŠ›ã—ã¦ã€Enterã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚\n");
+
 	scanf("%d", &led);
-	printf("“ü—Í‚³‚ê‚½ŒÂ”:%d \n", led);
+	printf("å…¥åŠ›ã•ã‚ŒãŸå€‹æ•°:%d \n", led);
 
-
-	//Ú‘±‚·‚éPIN‚ðŽ¿–â
+       
+	//æŽ¥ç¶šã™ã‚‹PINã‚’è³ªå•
+        //fp = fopen("Blink.ino", "a"); //è¿½åŠ æ›¸ãè¾¼ã¿å°‚ç”¨ã§é–‹ã
 	for (int i = 0 ; i < led; i++) {
-		printf("Ú‘±‚·‚éƒsƒ“”Ô†(Ž©‘R”)‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B\n");
-		int pin_num = 0;
+		printf("æŽ¥ç¶šã™ã‚‹ãƒ”ãƒ³ç•ªå·(è‡ªç„¶æ•°)ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚\n");
 		scanf("%d", &pin_num);
-		fp = fopen("Blink.ino", "a"); //’Ç‰Á‘‚«ž‚Ýê—p‚ÅŠJ‚­
+		
 		fprintf(fp, "pinMode(%d, OUTPUT);\n", pin_num);
 		//fclose(fp);
-		printf("Ú‘±‚·‚éƒsƒ“F%d ‚ðOUTPUT‚ÉÝ’è\n" ,pin_num);
+		printf("æŽ¥ç¶šã™ã‚‹ãƒ”ãƒ³ï¼š%d ã‚’OUTPUTã«è¨­å®š\n" ,pin_num);
 	}
-
-	fp = fopen("Blink.ino", "a"); //’Ç‰Á‘‚«ž‚Ýê—p‚ÅŠJ‚­
+        //fclose(fp);
+	//fp = fopen("Blink.ino", "a"); //è¿½åŠ æ›¸ãè¾¼ã¿å°‚ç”¨ã§é–‹ã
 	fprintf(fp, "}\n");
 	fprintf(fp, "void loop(){\n");
-	fclose(fp);
+	//fclose(fp);
 
 	
-	//LED‚ð“_–Å‚³‚¹‚é‡”Ô‚ðŽ¿–â
+	//LEDã‚’ç‚¹æ»…ã•ã›ã‚‹é †ç•ªã‚’è³ªå•
 	printf("\n");
-	printf("LED‚ðÚ‘±‚·‚éƒsƒ“‚ðŒˆ‚ß‚Ü‚µ‚å‚¤B\n");
+	printf("LEDã‚’æŽ¥ç¶šã™ã‚‹ãƒ”ãƒ³ã‚’æ±ºã‚ã¾ã—ã‚‡ã†ã€‚\n");
 
 	for (int i = 0; i < led; i++) {
-		//Ž¿–â
-		printf("%d‰ñ–Ú‚É“_“”‚³‚¹‚éLED‚ÌPIN”Ô†‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B\n", i + 1);
-		int pin = 0;
+		//è³ªå•
+		printf("%då›žç›®ã«ç‚¹ç¯ã•ã›ã‚‹LEDã®PINç•ªå·ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚\n", i + 1);
 		scanf("%d", pin);
-		printf("%d”Ô‚ð“_“”‚³‚¹‚Ü‚·B\n", pin);
+		printf("%dç•ªã‚’ç‚¹ç¯ã•ã›ã¾ã™ã€‚\n", pin);
 		
 		printf("\n");
-		printf("‰½ƒ~ƒŠ•b“_“”‚³‚¹‚Ü‚·‚©H\n");
+		printf("ä½•ãƒŸãƒªç§’ç‚¹ç¯ã•ã›ã¾ã™ã‹ï¼Ÿ\n");
 		int wait_t = 0;
 		scanf("%d", wait_t);
-		printf("%dƒ~ƒŠ•bŠÔ“_“”\n", wait_t);
+		printf("%dãƒŸãƒªç§’é–“ç‚¹ç¯\n", wait_t);
 
-		//‘‚«ž‚Ý
-		fp = fopen("Blink.ino", "a"); //’Ç‰Á‘‚«ž‚Ýê—p‚ÅŠJ‚­
+		//æ›¸ãè¾¼ã¿
+		//fp = fopen("Blink.ino", "a"); //è¿½åŠ æ›¸ãè¾¼ã¿å°‚ç”¨ã§é–‹ã
 		fprintf(fp, "digitalWrite(%d, HIGH);\n", pin);
 		fprintf(fp, "delay(%d)\n" , wait_t);
 		fprintf(fp, "digitalWrite(%d, LOW);\n", pin);
-		fclose(fp);
+		//fclose(fp);
 	
 		}
 	
-	fp = fopen("Blink.ino", "a"); //’Ç‰Á‘‚«ž‚Ýê—p‚ÅŠJ‚­
+	//fp = fopen("Blink.ino", "a"); //è¿½åŠ æ›¸ãè¾¼ã¿å°‚ç”¨ã§é–‹ã
 	fprintf(fp, "}\n");
 	fclose(fp);
 
-	printf("Ž¿–â‚ÍˆÈã‚Å‚·B\n");
+	printf("è³ªå•ã¯ä»¥ä¸Šã§ã™ã€‚\n");
 	
 
 	return 0;
